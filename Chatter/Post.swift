@@ -11,7 +11,8 @@ import Foundation
 class Post {
     
     var text: String
-    var date : NSDatevar userName: String
+    var date : NSDate
+    var userName: String
     
     init(text: String, date: NSDate, userName: String) {
         
