@@ -13,6 +13,20 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
     
+    @IBAction func cancelToMainMenu(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func saveNewPost(segue: UIStoryboardSegue) {
+        
+        let newPostViewController = segue.source as! NewPostViewController
+        
+        posts.insert(newPostViewController.post, at: 0)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
+    }
     var posts = postArray
     
     override func viewDidLoad() {
@@ -29,23 +43,6 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    
-    @IBAction func cancelToMainMenu(segue: UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func saveNewPost(segue: UIStoryboardSegue) {
-        
-        let newPostViewController = segue.source as! NewPostViewController
-        
-        posts.insert(newPostViewController.post, at: 0)
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        
-        tableView.insertRows(at: [indexPath as IndexPath], with: .automatic)
-    }
-    
-    
     func insertNewObject(_ sender: Any) {
         
         objects.insert(NSDate(), at: 0)
@@ -59,7 +56,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Segues
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "showDetail" {
             

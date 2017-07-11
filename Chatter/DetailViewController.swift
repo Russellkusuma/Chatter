@@ -13,26 +13,26 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var detailUserNameLabel: UILabel!
         
-        func configureView() {
-            
-            let post = detailItem
-            
-            detailDescriptionLabel?.text = post?.text
-            detailUserNameLabel?.text = post?.userName
-            detailDateLabel?.text = DateFormatter.localizedString(from: post?.date as! Date, dateStyle: .short, timeStyle: .short)
-        }
+    func configureView() {
+        var post = detailItem as! Post
         
-        override func viewDidLoad() {
-            
-            super.viewDidLoad()
-            self.configureView()
-        }
+        detailDateLabel?.text = DateFormatter.localizedString(from: post.date as Date, dateStyle: .short, timeStyle: .short)
+        detailUserNameLabel?.text = post.userName
+        detailDescriptionLabel?.text = post.text
+        
+    }
     
-        
-        override func didReceiveMemoryWarning() {
-            
-            super.didReceiveMemoryWarning()
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        self.configureView()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     var detailItem: Post? {
         didSet {
             // Update the view.
